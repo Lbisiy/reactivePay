@@ -1,0 +1,30 @@
+x{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payout Form</title>
+</head>
+<body>
+    <form action="/payout/" method="post">
+        {% csrf_token %}
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" required><br>
+
+        <label for="currency">Currency:</label>
+        <input type="text" name="currency" id="currency" required><br>
+
+        <label for="pan">Card:</label>
+        <input type="number" name="pan" id="pan" required><br>
+
+        <label for="expires">Valid to:</label>
+        <input type="text" name="expires" id="expires" required><br>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required><br>
+
+        <input type="submit" value="Payout">
+    </form>
+</body>
+</html>
+

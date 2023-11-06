@@ -1,0 +1,20 @@
+x{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Refund Form</title>
+</head>
+<body>
+    <form action="/refund/" method="post">
+        {% csrf_token %}
+        <label for="token payment">Token payment:</label>
+        <input type="text" name="token payment" id="token payment" required><br>
+
+        <label for="request amount">Amount:</label>
+        <input type="text" name="request amount" id="request amount" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
