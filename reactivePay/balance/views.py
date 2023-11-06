@@ -17,11 +17,11 @@ class BalanceView(View):
         payload = {
             'currency': 'USD'
         }
-        resp = requests.get(f'{self.SANDBOX_URL}/api/v1/balance', json=payload, headers=headers)
+        response = requests.get(f'{self.SANDBOX_URL}/api/v1/balance', json=payload, headers=headers)
 
-        if resp.status_code == 200:
-            data = resp.json()
+        if response.status_code == 200:
+            data = response.json()
             return HttpResponse(f'<html><body><span>Your balance {data["wallet"]["available"]}</body></html>')
         else:
             return HttpResponse(
-                f'<html><body><span>Something gone wrong: {resp.status_code, resp.text}</span></body></html>')
+                f'<html><body><span>Something gone wrong: {response.status_code, response.text}</span></body></html>')

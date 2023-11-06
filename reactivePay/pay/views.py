@@ -18,7 +18,6 @@ class PayView(View):
             "product": request.POST['product'],
             "amount": int(request.POST['amount']),
             "currency": request.POST['currency'],
-            "callbackUrl": "https://maratsafin.pythonanywhere.com",
         }
 
         headers = {
