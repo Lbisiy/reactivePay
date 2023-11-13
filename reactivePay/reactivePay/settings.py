@@ -23,9 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dj+*igh*rangl4_#v)93cfyepy%a_ebi9ksp$q0&fw44(-3@5a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '3ed1-109-245-201-114.ngrok-free.app', '*']
+CSRF_TRUSTED_ORIGINS = ["https://3ed1-109-245-201-114.ngrok-free.app"]
+CSRF_ALLOWED_ORIGINS = ["https://3ed1-109-245-201-114.ngrok-free.app"]
+CORS_ORIGINS_WHITELIST = ["https://3ed1-109-245-201-114.ngrok-free.app"]
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'payout',
     'refund',
     'callback',
+    'get_order',
 ]
 
 MIDDLEWARE = [

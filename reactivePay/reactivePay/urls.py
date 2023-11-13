@@ -24,4 +24,5 @@ urlpatterns = [
     path('payout/', include('payout.urls')),
     path('refund/', include('refund.urls')),
     path('callback/', include('callback.urls')),
+    path('get_order/', include('get_order.urls')),
 ]

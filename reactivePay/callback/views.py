@@ -1,36 +1,28 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class CallbackView(View):
     list_of_callbacks = []
 
     def post(self, request):
+        req_o = json.loads(request.body)
+        self.list_of_callbacks.append(req_o)
+        print(self.list_of_callbacks)
+        return HttpResponse('Status is:%s' % (req_o['status']))
 
-        try:
-            notification_data = json.loads(request.read())
-
-            with open('/callback/notifications.txt', 'a') as file:
-                file.write(notification_data)
-
-            #
-            # token = notification_data.get('token')
-            # payment_type = notification_data.get('type')
-            # status = notification_data.get('status')
-            # extraReturnParam = notification_data.get('extraReturnParam')
-            # orderNumber = notification_data.get('orderNumber')
-            # walletToken = notification_data.get('walletToken')
-            # recurringToken = notification_data.get('recurringToken')
-            # sanitizedMask = notification_data.get('sanitizedMask')
-            # amount = notification_data.get('amount')
-            # currency = notification_data.get('currency')
-            # gatewayAmount = notification_data.get('gatewayAmount')
-            # gatewayCurrency = notification_data.get('gatewayCurrency')
-
-            self.list_of_callbacks.append(notification_data)
-            return HttpResponse('Status is:200')
-
-        except json.JSONDecodeError:
-            return HttpResponse('Status is:400')
+        # if request.method == 'POST':
+        #     try:
+        #         req_o = json.loads(request.body)
+        #         with open('text.txt', 'a') as file:
+        #             file.write(req_o)
+        #         return HttpResponse(f'Status is:{req_o["status"]}')
+        #     except json.JSONDecodeError:
+        #         return HttpResponseBadRequest('Invalid JSON data')
+        #     else:
+        #         return HttpResponseBadRequest('Unsupported HTTP method')

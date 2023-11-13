@@ -18,6 +18,8 @@ class PayView(View):
             "product": request.POST['product'],
             "amount": int(request.POST['amount']),
             "currency": request.POST['currency'],
+            "orderNumber": request.POST['order_number'],
+            "callbackUrl": "https://3ed1-109-245-201-114.ngrok-free.app/callback/",
         }
 
         headers = {
