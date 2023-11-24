@@ -4,7 +4,7 @@ from django.views import View
 
 
 class BalanceView(View):
-    MERCHANT_PRIVATE_KEY = '1dab4b92513e63571052'
+    MERCHANT_PRIVATE_KEY = '#######'
     SANDBOX_URL = 'https://business.reactivepay.com'
 
     def get(self, request):
